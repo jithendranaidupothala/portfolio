@@ -12,16 +12,17 @@
     html{scroll-behavior:smooth}
     .glass{background:linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.40));backdrop-filter: blur(6px);}
     .accent-underline{background:linear-gradient(90deg,var(--accent), #06b6d4);height:4px;width:60px;border-radius:999px;margin:auto}
-    .progress{height:10px;background:rgba(15,23,42,0.06);border-radius:999px;overflow:hidden}
-    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent), #38bdf8)}
+    .fade-in{opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
+    .fade-in.visible{opacity:1;transform:none;}
+    .floating-btn{position:fixed;bottom:20px;right:20px;background:linear-gradient(90deg,#0ea5a4,#38bdf8);color:white;padding:12px 20px;border-radius:9999px;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:50;cursor:pointer;font-weight:600;transition:transform 0.4s, box-shadow 0.4s, opacity 0.6s;opacity:0;transform:translateY(18px);}
+    .floating-btn.visible{opacity:1;transform:translateY(0);}
+    .floating-btn:hover{transform:scale(1.05);box-shadow:0 6px 25px rgba(0,0,0,0.3);}
     .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:2rem;z-index:60}
     .modal{width:100%;max-width:960px;height:80vh;background:white;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
     .modal .toolbar{padding:0.75rem 1rem;border-bottom:1px solid #eef2f6;display:flex;justify-content:space-between;align-items:center}
     .pdf-frame{flex:1;border:0}
-    .fade-in{opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
-    .fade-in.visible{opacity:1;transform:none;}
-    .floating-btn{position:fixed;bottom:20px;right:20px;background:linear-gradient(90deg,#0ea5a4,#38bdf8);color:white;padding:12px 20px;border-radius:9999px;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:50;cursor:pointer;font-weight:600;transition:transform 0.3s, box-shadow 0.3s;}
-    .floating-btn:hover{transform:scale(1.05);box-shadow:0 6px 25px rgba(0,0,0,0.3);}
+    .hero-bg {position: absolute; inset:0; z-index:-1; background: linear-gradient(120deg, rgba(14,165,164,0.06), rgba(56,189,248,0.03)); animation: moveBg 12s linear infinite;}
+    @keyframes moveBg {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   </style>
 </head>
 <body class="bg-gradient-to-b from-white to-gray-50 text-slate-800 antialiased">
@@ -48,23 +49,31 @@
   </nav>
 </header>
 
-<main class="pt-28">
+<main class="pt-28 relative overflow-hidden">
+  <div class="hero-bg"></div>
+
   <!-- Hero -->
   <section class="max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-10 items-center">
-    <div class="space-y-6 fade-in">
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Hi, I'm <span class="text-teal-600">Jithendra</span> — Data Analyst & Engineer</h1>
-      <p class="text-lg text-slate-700 max-w-2xl">MSc Data Science graduate with expertise in Data Engineering, Machine Learning, and Neural Networks. Skilled in Azure Data Factory, Databricks, PySpark, SQL, and Power BI for data pipelines and analytics. Passionate about building scalable ETL systems and deploying intelligent ML solutions for impactful decision-making.</p>
-      <div class="flex gap-4 items-center">
+    <div class="space-y-6 fade-in text-center lg:text-left">
+      <img src="image5.jpeg" alt="Jithendra Naidu Pothala portrait"
+           class="w-36 h-36 mx-auto lg:mx-0 rounded-full object-cover border-4 border-teal-400 shadow-lg fade-in">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        Hi, I'm <span class="text-teal-600">Jithendra</span> — Data Analyst & Engineer
+      </h1>
+      <p class="text-lg text-slate-700 max-w-2xl mx-auto lg:mx-0">
+        MSc Data Science graduate with expertise in Data Engineering, Machine Learning, and Neural Networks. Skilled in Azure Data Factory, Databricks, PySpark, SQL, and Power BI for data pipelines and analytics. Passionate about building scalable ETL systems and deploying intelligent ML solutions for impactful decision-making.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center lg:justify-start items-center">
         <a href="#projects" class="px-5 py-2 bg-teal-600 text-white rounded-lg shadow hover:scale-[1.01] transition">See Projects</a>
-        <a id="downloadCv" href="/Jithendra_P_CV.pdf" download class="px-4 py-2 border border-slate-200 rounded-lg text-slate-700">Download CV</a>
+        <a id="downloadCv" href="Jithendra_P_CV.pdf" download class="px-4 py-2 border border-slate-200 rounded-lg text-slate-700">Download CV</a>
       </div>
     </div>
     <div class="flex justify-center fade-in">
-      <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_2LdLki.json" background="transparent" speed="1" style="width: 350px; height: 350px;" loop autoplay></lottie-player>
+      <img src="image5.jpeg" alt="Data engineering illustration" class="rounded-2xl shadow-lg w-96 h-auto">
     </div>
   </section>
 
-  <!-- Rest of content unchanged (projects, experience, skills, contact) -->
+  <!-- Projects -->
   <section id="projects" class="max-w-6xl mx-auto px-6 py-12 fade-in">
     <h2 class="text-2xl font-bold text-center mb-8">Academic & ML Projects</h2>
     <div class="accent-underline mb-8"></div>
@@ -90,6 +99,7 @@
     </div>
   </section>
 
+  <!-- Experience -->
   <section id="experience" class="max-w-6xl mx-auto px-6 py-12 fade-in">
     <h2 class="text-2xl font-bold text-center mb-8">Experience</h2>
     <div class="accent-underline mb-8"></div>
@@ -115,6 +125,7 @@
     </div>
   </section>
 
+  <!-- Skills -->
   <section id="skills" class="max-w-6xl mx-auto px-6 py-12 fade-in">
     <h2 class="text-2xl font-bold text-center mb-8">Skills & Tools</h2>
     <div class="accent-underline mb-8"></div>
@@ -134,6 +145,7 @@
     </div>
   </section>
 
+  <!-- Contact -->
   <section id="contact" class="max-w-4xl mx-auto px-6 py-12 text-center fade-in">
     <h2 class="text-2xl font-bold mb-2">Let's connect</h2>
     <p class="text-slate-600 mb-6">Open to Data Engineer and ML-based analytics roles. Excited to bring data to life through pipelines and predictive systems!</p>
@@ -150,7 +162,7 @@
 </main>
 
 <!-- Floating Download Button -->
-<a href="/Jithendra_P_CV.pdf" download class="floating-btn">Download Resume</a>
+<a id="floatingResume" href="Jithendra_P_CV.pdf" download class="floating-btn">Download Resume</a>
 
 <!-- CV Modal -->
 <div id="cvModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
@@ -158,11 +170,11 @@
     <div class="toolbar">
       <div class="font-semibold">Curriculum Vitae — Jithendra Pothala</div>
       <div class="flex items-center gap-3">
-        <a id="modalDownload" href="/Jithendra_P_CV.pdf" download class="px-3 py-1 border rounded text-sm">Download</a>
+        <a id="modalDownload" href="Jithendra_P_CV.pdf" download class="px-3 py-1 border rounded text-sm">Download</a>
         <button id="closeCv" class="px-3 py-1 bg-slate-100 rounded">Close</button>
       </div>
     </div>
-    <iframe class="pdf-frame" id="pdfFrame" src="/Jithendra_P_CV.pdf"></iframe>
+    <iframe class="pdf-frame" id="pdfFrame" src="Jithendra_P_CV.pdf"></iframe>
   </div>
 </div>
 
@@ -186,6 +198,11 @@
     });
   },{threshold:0.2});
   document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-</script>
-</body>
-</html>
+
+  // floating button animation
+  const floating=document.getElementById('floatingResume');
+  function handleFloating(){
+    if(window.scrollY > 120){
+      floating.classList.add('visible');
+    } else {
+      floating.classList.remove('visible');
